@@ -28,7 +28,7 @@ Reinforcement learning (RL) has always been a bit of a balancing act between **l
 
 But, what if we approached RL like a **sequence modeling problem**, much like how we process language? That’s where **Decision Transformers (DT)** come in. This paper brings a fresh perspective: what if RL agents could learn from past decisions in a sequence, like how we predict the next word in a sentence? Instead of continuously optimizing value functions, DT uses **transformer models** to predict the next best action based on the past, making it super scalable and efficient.
 
-![image.png](image%1.png)
+![image.png](image%201.png)
 
 [*Fig. 2. Encoder-Decoder structure of a Transformer. An input sequence is passed through a series of encoders sequentially, after which the final encoder output is passed in parallel to a stack of decoders.*](https://www.ias.informatik.tu-darmstadt.de/uploads/Teaching/HumanoidRoboticsSeminar/HR_Report_21_22_Timo_Imhof_Decision_Transformer.pdf) 
 
@@ -54,7 +54,7 @@ Now, here’s the real twist: DT treats RL problems like sequence modeling. Thin
 
 [*Fig.4.Decision Transformer architecture. States, actions, and returns are fed into modalityspecific linear embeddings and a positional episodic timestep encoding is added. Tokens are fed into a GPT architecture which predicts actions autoregressively using a causal self-attention mask.*](https://arxiv.org/pdf/2106.01345)
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%204.png)
+![image.png](image%204.png)
 
 [*Fig. 5. GPT architecture used for the Decision Transformer. After an input sequence is passed through the input embeddings and positional encodings it is processed by N stacked identical decoders.*](https://www.ias.informatik.tu-darmstadt.de/uploads/Teaching/HumanoidRoboticsSeminar/HR_Report_21_22_Timo_Imhof_Decision_Transformer.pdf) 
 
@@ -75,7 +75,7 @@ $\hat{R}_t = \sum_{t' = t}^{T} r{t'}$ , where  $r_{t'}$  is the reward at each t
 
 In Decision Transformers, the past actions, states, and RTG are fed into the model. The transformer uses this info to predict the next action—like piecing together a puzzle where each past action helps predict the next best move. The beauty here is that the **transformer can “look back” at what happened and “plan forward”** to maximize future rewards. Pretty neat, right?
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%205.png)
+![image.png](image%205.png)
 
 [*Fig. 6. Illustrative example of finding shortest path for a fixed graph (left) posed as reinforcement
 learning. Training dataset consists of random walk trajectories and their per-node returns-to-go
@@ -137,7 +137,7 @@ Now, let’s see how DT stacks up against two popular methods:
 
 **OpenAI Gym Control Tasks (Continuous Environment)**: DT also performs great in **continuous environments**, where actions need to be finely controlled, like in robotics tasks. Even with long-term dependencies and delayed rewards, DT nails it by planning forward better than TD learning or behavior cloning.
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%206.png)
+![image.png](image%206.png)
 
 [Fig. 7. Results comparing Decision Transformer (ours) to TD learning (CQL) and behavior cloning across Atari, OpenAI Gym, and Minigrid. On a diverse set of tasks, Decision Transformer performs comparably or better than traditional approaches.](https://arxiv.org/pdf/2106.01345)
 
@@ -147,7 +147,7 @@ Now, let’s see how DT stacks up against two popular methods:
 
 Well, DT does **mimic expert behavior** in some cases, but it doesn’t stop there. When there’s **plenty of data**, DT matches or even outperforms behavior cloning. However, in **low-data settings**, behavior cloning weakens while DT manages to thrive, learning from smaller amounts of data by recognizing key patterns in the sequences.
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%207.png)
+![image.png](image%207.png)
 
 [*Tab. 1. Comparison between Decision Transformer (DT) and Percentile Behavior Cloning (%BC).*](https://arxiv.org/pdf/2106.01345)
 
@@ -155,7 +155,7 @@ Well, DT does **mimic expert behavior** in some cases, but it doesn’t stop the
 
 DT models returns so well that it often **perfectly matches the desired returns**, sometimes even **exceeding expectations**! It has a knack for predicting better outcomes based on past sequences.
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%208.png)
+![image.png](image%208.png)
 
 [*Fig. 8. Sampled (evaluation) returns accumulated by Decision Transformer when conditioned on the specified target (desired) returns. Top: Atari. Bottom: D4RL medium-replay datasets.*](https://arxiv.org/pdf/2106.01345)
 
@@ -163,7 +163,7 @@ DT models returns so well that it often **perfectly matches the desired returns*
 
 Here’s an interesting bit: DT’s **context length (K)** represents how much past info it looks at. The **larger K is**, the more past information DT uses to make decisions, helping it identify the policy that generated the actions. Bigger K? Better learning.
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%209.png)
+![image.png](image%209.png)
 
 [*Tab. 2. Ablation on context length. Decision Transformer (DT) performs better when using a longer context length (K = 50 for Pong, K = 30 for others).*](https://arxiv.org/pdf/2106.01345)
 
@@ -173,7 +173,7 @@ Here’s a fun example: In the **Key-to-Door** environment (where you have to gr
 
 Even in environments where rewards are only given at the end of a sequence (delayed return settings), DT remains robust, unlike TD-learning which falls apart.
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%2010.png)
+![image.png](image%2010.png)
 
 [*Tab. 3.  Success rate for Key-to-Door environment. Methods using hindsight (Decision Transformer, %BC) can learn successful policies, while TD learning struggles to perform credit assignment.*](https://arxiv.org/pdf/2106.01345)
 
