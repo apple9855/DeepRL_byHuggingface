@@ -22,7 +22,7 @@ What if we could revolutionize reinforcement learning by treating it like langua
 
 Reinforcement learning (RL) has always been a bit of a balancing act between **learning good behavior** and **not messing up too much** while exploring. Most traditional methods like **Q-learning** or **policy gradient** struggle with this balance, especially in environments where exploration is costly or limited. They rely heavily on **value functions**, constantly trying to estimate the best action to take at each step. It’s like trying to predict the weather 100 times a day—tiring and not always accurate!
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image.png)
+![image.png](image.png)
 
 [*Fig. 1. The agent-environment cycle visualizes the main principles of reinforcement learning: observing states, choosing actions, and receiving rewards.*](https://www.ias.informatik.tu-darmstadt.de/uploads/Teaching/HumanoidRoboticsSeminar/HR_Report_21_22_Timo_Imhof_Decision_Transformer.pdf)
 
