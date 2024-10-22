@@ -28,7 +28,7 @@ Reinforcement learning (RL) has always been a bit of a balancing act between **l
 
 But, what if we approached RL like a **sequence modeling problem**, much like how we process language? That’s where **Decision Transformers (DT)** come in. This paper brings a fresh perspective: what if RL agents could learn from past decisions in a sequence, like how we predict the next word in a sentence? Instead of continuously optimizing value functions, DT uses **transformer models** to predict the next best action based on the past, making it super scalable and efficient.
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%201.png)
+![image.png](image%1.png)
 
 [*Fig. 2. Encoder-Decoder structure of a Transformer. An input sequence is passed through a series of encoders sequentially, after which the final encoder output is passed in parallel to a stack of decoders.*](https://www.ias.informatik.tu-darmstadt.de/uploads/Teaching/HumanoidRoboticsSeminar/HR_Report_21_22_Timo_Imhof_Decision_Transformer.pdf) 
 
@@ -42,7 +42,7 @@ First, let’s talk about **Offline RL**. Here, the agent isn’t running around
 
 If you’ve ever worked with natural language processing, you’ve probably heard of **Transformers**. This architecture excels at capturing relationships in sequences. In RL, where decisions depend on previous states and actions, transformers fit in perfectly. They use key features like **self-attention** (which helps the model focus on the most important past actions) and **multi-head attention** (which allows it to look at different parts of the past simultaneously). This is why Transformers can handle RL's decision-making process so well.
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%202.png)
+![image.png](image%202.png)
 
 [*Fig. 3. Single self-attention operation. The keys, queries and values concept outputs a weighted version of the input with more context added.*](https://www.ias.informatik.tu-darmstadt.de/uploads/Teaching/HumanoidRoboticsSeminar/HR_Report_21_22_Timo_Imhof_Decision_Transformer.pdf)
 
@@ -50,7 +50,7 @@ If you’ve ever worked with natural language processing, you’ve probably hear
 
 Now, here’s the real twist: DT treats RL problems like sequence modeling. Think of it like predicting the next word in a sentence—only here, it’s predicting the next action in a trajectory (like moving left, right, or jumping over an obstacle). The model uses **state-action-reward** sequences, similar to how a language model uses **word-context-meaning**. This approach allows the model to **predict future actions based on past decisions**, which turns out to be surprisingly effective!
 
-![image.png](Blog%20Understanding%20Decision%20Transformer%20Paper%20127ab1128b4080ddb5f9d595f3f48b22/image%203.png)
+![image.png](image%203.png)
 
 [*Fig.4.Decision Transformer architecture. States, actions, and returns are fed into modalityspecific linear embeddings and a positional episodic timestep encoding is added. Tokens are fed into a GPT architecture which predicts actions autoregressively using a causal self-attention mask.*](https://arxiv.org/pdf/2106.01345)
 
